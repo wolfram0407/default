@@ -2,6 +2,7 @@ import {Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import postgresConfig from './config/postgres.config';
 import {TypeOrmModule} from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -26,6 +27,7 @@ import {TypeOrmModule} from '@nestjs/typeorm';
       }),
 
     }),
+    AuthModule,
   ],
   controllers: [],
   providers: [],
