@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {BadGatewayException, Injectable} from '@nestjs/common';
 import {Repository} from 'typeorm';
 import {InjectRepository} from '@nestjs/typeorm';
 
@@ -30,5 +30,20 @@ export class RefreshTokenRepository {
     refreshToken.expiresAt = expiresAt;
     refreshToken.isRevoked = false;
     return this.repo.save(refreshToken);
+  }
+
+  async findToken(userId: string) {
+    const token = await this.repo.findOneBy({user: {id: userId}})
+    return token ? token.token : null;
+  }
+
+  async remove(userId: string) {
+    try {
+      this.repo.delete({user: {id: userId}})
+      return true;
+    } catch (error) {
+      throw new BadGatewayException()
+    }
+
   }
 }

@@ -40,6 +40,11 @@ export class AuthService {
     };
   }
 
+  async logout(userId: string) {
+    return await this.refreshTokenRepository.remove(userId)
+  }
+
+
   async refreshAccessToken(refreshToken: string, userId: string) {
     try {
       const {exp, ...payload} = await this.jwtService.verifyAsync(
@@ -50,11 +55,16 @@ export class AuthService {
       );
 
       const user = await this.userRepository.findOneBy({id: payload.sub});
+      const checkRefreshToken = await this.refreshTokenRepository.findToken(userId)
 
       if (!user)
         throw new NotFoundException();
       if (user.id !== userId)
         throw new ForbiddenException();
+
+      if (checkRefreshToken !== refreshToken) {
+        throw new ForbiddenException();
+      }
       return this.createAccessToken(user, payload as TokenPayload)
 
     } catch (error) {

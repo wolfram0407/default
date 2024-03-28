@@ -54,10 +54,9 @@ export class AuthController {
   @ApiBearerAuth()
   @Post('refresh')
   async refresh(
-    @Headers('authorization') authorization: string,
+    @Headers('authorization') authorization,
     @User() user: UserAfterAuth
   ): Promise<AccessResDto> {
-
     const token = /Bearer\s(.+)/.exec(authorization)[1];
     const accessToken = await this.authService.refreshAccessToken(token, user.id);
     return {
@@ -65,7 +64,16 @@ export class AuthController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Post('logout')
+  async logout(
+    @User() user: UserAfterAuth
+  ) {
+    const status = this.authService.logout(user.id)
 
+    return status ? {status: 'success'} : {status: 'fail'}
+  }
 }
 
 
