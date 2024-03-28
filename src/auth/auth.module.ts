@@ -7,7 +7,8 @@ import {JwtModule} from '@nestjs/jwt';
 import {PassportModule} from '@nestjs/passport';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {RefreshToken, User} from './entities';
-import {UserRepository} from './repositories';
+import {RefreshTokenRepository, UserRepository} from './repositories';
+import {JwtStrategy} from './strategies';
 
 @Module({
   imports: [
@@ -33,6 +34,8 @@ import {UserRepository} from './repositories';
     UserService,
     UserRepository,
     AuthService,
+    RefreshTokenRepository,
+    JwtStrategy,
 
   ],
 })

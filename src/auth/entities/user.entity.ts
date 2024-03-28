@@ -21,12 +21,6 @@ export class User extends BaseEntity {
   @Column({type: 'enum', enum: UserRole})
   role: UserRole;
 
-  @Column({nullable: true})
-  regNo: string;
-
-  @Column({default: false})
-  isPersonalInfoVerified: boolean;
-
   @OneToMany(() => RefreshToken, (token) => token.user)
   refreshToken: Relation<RefreshToken[]>;
 

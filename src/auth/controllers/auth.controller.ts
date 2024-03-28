@@ -1,9 +1,11 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, Req} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, Req, Headers, UseGuards} from '@nestjs/common';
 
-import {CreateUserDto, SignupResDto} from '../dto/';
+import {AccessResDto, CreateUserDto, LoginResDto, SignupResDto} from '../dto/';
 import {UserService, AuthService} from '../services';
-import {ApiCreatedResponse, ApiExtraModels, ApiOperation, ApiTags} from '@nestjs/swagger';
+import {ApiCreatedResponse, ApiExtraModels, ApiOperation, ApiTags, ApiBearerAuth} from '@nestjs/swagger';
 import {LoginReqDto} from '../dto/login-req.dto';
+import {JwtAuthGuard} from '../guards/jwt-auth.guard';
+import {User, UserAfterAuth} from 'src/common/decorator/user.decorator';
 
 @ApiTags('user')
 @ApiExtraModels(SignupResDto)
@@ -34,7 +36,7 @@ export class AuthController {
   async login(
     @Req() req,
     @Body() loginReqDto: LoginReqDto,
-  ) {
+  ): Promise<LoginResDto> {
     const reqInfo = {
       ip: req.ip,
       endpoint: `${req.method} ${req.originalUrl}`,
@@ -46,6 +48,21 @@ export class AuthController {
       loginReqDto.password,
       reqInfo
     )
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Post('refresh')
+  async refresh(
+    @Headers('authorization') authorization: string,
+    @User() user: UserAfterAuth
+  ): Promise<AccessResDto> {
+
+    const token = /Bearer\s(.+)/.exec(authorization)[1];
+    const accessToken = await this.authService.refreshAccessToken(token, user.id);
+    return {
+      accessToken
+    }
   }
 
 
