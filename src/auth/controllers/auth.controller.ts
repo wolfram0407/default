@@ -7,7 +7,7 @@ import {LoginReqDto} from '../dto/login-req.dto';
 import {JwtAuthGuard} from '../guards/jwt-auth.guard';
 import {User, UserAfterAuth} from 'src/common/decorator/user.decorator';
 
-@ApiTags('user')
+@ApiTags('auth')
 @ApiExtraModels(SignupResDto)
 @Controller('auth')
 export class AuthController {

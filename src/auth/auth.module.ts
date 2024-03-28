@@ -1,6 +1,6 @@
 import {Module} from '@nestjs/common';
 import {AuthService} from './services/auth.service';
-import {AuthController} from './controllers/auth.controller';
+
 import {UserService} from './services';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {JwtModule} from '@nestjs/jwt';
@@ -9,6 +9,10 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {RefreshToken, User} from './entities';
 import {RefreshTokenRepository, UserRepository} from './repositories';
 import {JwtStrategy} from './strategies';
+import {UserController, AuthController} from './controllers';
+
+
+
 
 @Module({
   imports: [
@@ -27,9 +31,10 @@ import {JwtStrategy} from './strategies';
     TypeOrmModule.forFeature([
       User,
       RefreshToken,
+
     ]),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [
     UserService,
     UserRepository,
