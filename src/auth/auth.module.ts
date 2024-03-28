@@ -6,7 +6,7 @@ import {ConfigModule, ConfigService} from '@nestjs/config';
 import {JwtModule} from '@nestjs/jwt';
 import {PassportModule} from '@nestjs/passport';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {User} from './entities';
+import {RefreshToken, User} from './entities';
 import {UserRepository} from './repositories';
 
 @Module({
@@ -25,7 +25,7 @@ import {UserRepository} from './repositories';
     PassportModule.register({defaultStrategy: 'jwt'}),
     TypeOrmModule.forFeature([
       User,
-
+      RefreshToken,
     ]),
   ],
   controllers: [AuthController],

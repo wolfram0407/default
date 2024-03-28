@@ -44,6 +44,7 @@ const RAW_RUNTIME_STATE =
           ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/pg", "npm:8.11.4"],\
           ["@types/supertest", "npm:6.0.2"],\
+          ["@types/uuid", "npm:9.0.8"],\
           ["@typescript-eslint/eslint-plugin", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:6.21.0"],\
           ["@typescript-eslint/parser", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:6.21.0"],\
           ["argon2", "npm:0.40.1"],\
@@ -66,7 +67,8 @@ const RAW_RUNTIME_STATE =
           ["tsconfig-paths", "npm:4.2.0"],\
           ["typeorm", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:0.3.20"],\
           ["typeorm-transactional", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:0.5.0"],\
-          ["typescript", "patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"]\
+          ["typescript", "patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"],\
+          ["uuid", "npm:9.0.1"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -2461,6 +2463,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/uuid", [\
+      ["npm:9.0.8", {\
+        "packageLocation": "./.yarn/cache/@types-uuid-npm-9.0.8-3eeeaa5abb-b411b93054.zip/node_modules/@types/uuid/",\
+        "packageDependencies": [\
+          ["@types/uuid", "npm:9.0.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/validator", [\
       ["npm:13.11.9", {\
         "packageLocation": "./.yarn/cache/@types-validator-npm-13.11.9-ac3f0e748e-856ebfcfe2.zip/node_modules/@types/validator/",\
@@ -4274,6 +4285,7 @@ const RAW_RUNTIME_STATE =
           ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/pg", "npm:8.11.4"],\
           ["@types/supertest", "npm:6.0.2"],\
+          ["@types/uuid", "npm:9.0.8"],\
           ["@typescript-eslint/eslint-plugin", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:6.21.0"],\
           ["@typescript-eslint/parser", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:6.21.0"],\
           ["argon2", "npm:0.40.1"],\
@@ -4296,7 +4308,8 @@ const RAW_RUNTIME_STATE =
           ["tsconfig-paths", "npm:4.2.0"],\
           ["typeorm", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:0.3.20"],\
           ["typeorm-transactional", "virtual:d9499ec504b2da38838e901287ca3164c75aa293e50051e1d88bf52c4d3cfaf9f864a12a02a6f6ab01fb2e8eeb005f5c5277ac78d1558c355519fa6b5e5399b4#npm:0.5.0"],\
-          ["typescript", "patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"]\
+          ["typescript", "patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"],\
+          ["uuid", "npm:9.0.1"]\
         ],\
         "linkType": "SOFT"\
       }]\

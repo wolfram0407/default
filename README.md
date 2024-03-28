@@ -41,22 +41,17 @@ src/auth
 │   └── login-res.dto.ts
 ├── entities
 │   ├── access-log.entity.ts
-│   ├── access-token.entity.ts
 │   ├── index.ts
 │   ├── refresh-token.entity.ts
-│   ├── token-blacklist.entity.ts
 │   └── user.entity.ts
 ├── repositories
 │   ├── access-log.repository.ts
-│   ├── access-token.repository.ts
 │   ├── index.ts
 │   ├── refresh-token.repository.ts
-│   ├── token-blacklist.repository.ts
 │   └── user.repository.ts
 └── services
     ├── auth.service.ts
     ├── index.ts
-    ├── token-blacklist.service.ts
     └── user.service.ts
 ```
 
@@ -68,10 +63,6 @@ src/auth
    - 접속 로그 저장: 사용자의 접속 정보를 로그로 저장합니다.
 2. **토큰 갱신 (refreshAccessToken)**
    - 리프레시 토큰 검증: 제공된 리프레시 토큰을 검증하고 유효한 경우 새로운 액세스 토큰을 발급합니다.
-3. **로그아웃 (logout)**
-   - 토큰 블랙리스트: 로그아웃 시 사용자의 현재 토큰을 블랙리스트에 추가하여 더 이상 사용할 수 없게 합니다.
-4. **토큰 블랙리스트 관리**
-   - 토큰 블랙리스트에 추가 및 조회: 특정 토큰을 블랙리스트에 추가하거나 조회하는 기능을 제공합니다.
 
 ### 보안 및 최적화 🛡️
 

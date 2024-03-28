@@ -1,6 +1,7 @@
 import {Column, Entity, OneToMany, Relation} from 'typeorm';
 import {BaseEntity} from '../../common/entity';
 import {UserRole} from '../types';
+import {RefreshToken} from '.';
 
 
 @Entity()
@@ -26,5 +27,7 @@ export class User extends BaseEntity {
   @Column({default: false})
   isPersonalInfoVerified: boolean;
 
+  @OneToMany(() => RefreshToken, (token) => token.user)
+  refreshToken: Relation<RefreshToken[]>;
 
 }
