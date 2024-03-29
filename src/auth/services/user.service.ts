@@ -15,6 +15,16 @@ export class UserService {
     const hashedPassword = await argon2.hash(dto.password);
     return this.userRepo.createUser(dto, hashedPassword)
   }
+
+  async updateUserInfo(userId: string, name: string, phone: string) {
+    return this.userRepo.updateUserInfo(userId, name, phone)
+
+  }
+
+
+
+
+
   async validateUser(id: string): Promise<User> {
     const [user] = await Promise.all([
       this.userRepo.findOneBy({id}),
@@ -24,5 +34,6 @@ export class UserService {
     }
     return user;
   }
+
 
 }

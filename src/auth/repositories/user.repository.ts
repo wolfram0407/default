@@ -17,6 +17,10 @@ export class UserRepository extends Repository<User> {
   async findOneByEmail(email: string): Promise<User> {
     return this.repo.findOneBy({email});
   }
+  async findOneById(id: string): Promise<User> {
+    return this.repo.findOneBy({id});
+  }
+
 
   async createUser(dto: CreateUserDto, hashedPassword: string): Promise<User> {
     const user = new User();
@@ -25,6 +29,27 @@ export class UserRepository extends Repository<User> {
     user.password = hashedPassword;
     user.phone = dto.phone;
     user.role = dto.role;
-    return this.repo.save(user);
+    return await this.repo.save(user);
+  }
+
+  async updateUserInfo(id: string, name: string, phone: string) {
+    try {
+      const user = await this.findOneById(id)
+      user.name = user.name === name ? user.name : name
+      user.phone = user.phone === phone ? user.phone : phone
+      await this.repo.save(user);
+
+      return {
+        message: 'success',
+        user: {
+          name: user.name,
+          phone: user.phone
+        }
+      }
+    } catch (err) {
+      return {
+        message: 'fail'
+      }
+    }
   }
 }

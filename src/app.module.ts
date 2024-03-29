@@ -2,7 +2,10 @@ import {Module} from '@nestjs/common';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import postgresConfig from './config/postgres.config';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
+import {AuthModule} from './auth/auth.module';
+import {APP_INTERCEPTOR} from '@nestjs/core';
+import {LoggingReqInterceptor} from './common/interceptors';
+
 
 
 @Module({
@@ -30,6 +33,11 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingReqInterceptor,
+    }
+  ],
 })
 export class AppModule {}
