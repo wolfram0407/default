@@ -40,13 +40,16 @@ export class UserController {
         }
       }
     }
-
     return await this.userService.updateUserInfo(user.id, updateData.name, updateData.phone)
-
-
-
   }
 
+  @ApiBearerAuth()
+  @Delete('info')
+  async deleteUser(
+    @User() {id}: UserAfterAuth
+  ) {
+    return await this.userService.deleteUser(id)
+  }
 }
 
 
